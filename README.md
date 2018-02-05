@@ -1,9 +1,9 @@
 # malluscript
 Javascript Malayalam - Simple malayalam wrapped javascript. Using a simple concept in a funny way.
 
-
-<script>
-		var Mallu  = new MalluScript();
+```javascript
+  <script>
+    var Mallu  = new MalluScript();
     // malluscript converted to javascript
     var result = Mallu.compile("പറയുക('മല്ലു സ്ക്രിപ്റ്റിലേക്ക് സ്വാഗതം') ");
     // alert('മല്ലു സ്ക്രിപ്റ്റിലേക്ക് സ്വാഗതം');
@@ -11,8 +11,11 @@ Javascript Malayalam - Simple malayalam wrapped javascript. Using a simple conce
     // Execute malluscript
      Mallu.compile("പറയുക('മല്ലു സ്ക്രിപ്റ്റിലേക്ക് സ്വാഗതം') ");
 </script>
+```
 
 Or execute as normal javascript 
+
+```javascript
 
 <script type="text/malluscript">
   
@@ -24,4 +27,4 @@ Or execute as normal javascript
    പറയുക(വണ്ടി_നാമം);
 
 </script>
-  
+```  
