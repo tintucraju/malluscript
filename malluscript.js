@@ -1,5 +1,5 @@
 /*        മല്ലുസ്ക്രിപ്ട് 
-     @author : എഴുതിതുടങ്ങിയത് ടിൻറു.
+          @author : എഴുതിതുടങ്ങിയത് ടിൻറു.
 	  ഏതു രീതിയിലും ഇഷ്ടം പോലെ ഉപയോഗിക്കാവുന്ന ലൈസൻസ്.
 	  തെറ്റുകൾ തിരുത്തുകയും പുതിയ സംഗതികൾ കൂട്ടിച്ചെർക്കുകയും ആകാം.  
 */
@@ -159,7 +159,7 @@ MalluScript = function(options={}){
 		var mallu_scripts = document.querySelectorAll("[type='text/malluscript']");
 		
 		
-		for(let script of scripts) {
+		for(let script of mallu_scripts) {
 			
 			if(script.src) {
 
