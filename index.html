@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MalluScript - Malayalam Javascript</title>
+    <meta charset="UTF-8">
+    <script src='http://www.google.com/jsapi'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js'></script>
+
+    <script type="text/javascript">
+        // Load the Google Transliteration API
+        	google.load("elements", "1", {packages: "transliteration"});
+        	  
+			var control;
+	  
+			  function checkboxClickHandler() {
+			control.toggleTransliteration();
+		  }
+				  
+        	function onLoad() {
+        
+        		var options = {
+        		  sourceLanguage: 'en',
+        		  destinationLanguage: ['ml', 'hi','kn','ta','te'],
+        		  shortcutKey: 'ctrl+m',
+        		  transliterationEnabled: true
+        		};
+        
+        		// Create an instance on TransliterationControl with the required
+        
+        		// options.
+        
+        		control =
+        			new google.elements.transliteration.TransliterationControl(options);
+        		// Enable transliteration in the textfields with the given ids.
+        
+		
+
+		
+				 control.addEventListener(
+					google.elements.transliteration.TransliterationControl.EventType.STATE_CHANGED,
+					transliterateStateChangeHandler);
+			
+				 document.getElementById('checkboxId').checked =
+				 control.isTransliterationEnabled();
+		
+		
+		function transliterateStateChangeHandler(e) {
+        document.getElementById('checkboxId').checked = e.transliterationEnabled;
+      }
+	  
+
+		
+        		var ids = [ "str" ];
+        		control.makeTransliteratable(ids);
+        		// Show the transliteration control which can be used to toggle between
+        		// English and Hindi and also choose other destination language.
+        		control.showControl('translControl');
+        	}
+        
+        	google.setOnLoadCallback(onLoad);
+    </script>
+
+    <script src='mallu_script.js'></script>
+    <script>
+        var Mallu = new MalluScript();
+    </script>
+</head>
+
+<body>
+
+<p style="
+    background: gainsboro;
+    padding: 10px;
+"><span style="
+    font-size: 25px;
+    color: #E91E63;
+    font-weight: 600;
+">മല്ലു</span><span style="
+    font-size: 25px;
+    color: green;
+    font-weight: 600;
+">SCRIPT</span></p>
+	
+	
+    <div class="row">
+        <form class="col s12" style='margin-top:15px;'>
+
+		
+		<div class="switch" style='margin-bottom:10px;'>
+    <label>
+      English
+      <input type="checkbox" id="checkboxId" onclick="javascript:checkboxClickHandler()">
+      <span id="checkboxId" class="lever"></span>
+              മലയാളം 
+    </label>
+</div>
+
+	 
+		
+            <div class="row">
+
+				<div class="input-field col s3">
+					
+					<ul id="examples"  class="dropdown-content active" style="width: 100%;5px;display: block;opacity: 1;height:50vh;">
+					</ul>
+
+
+					</div>
+					
+					<div class="input-field col s1">
+					</div>
+				
+                <div class="input-field col s4">
+
+				
+					<p>MalluScript
+					</p>
+					
+                    <textarea name='str' id='str' onscroll='scrolled();' class="materialize-textarea">
+ആകാശം = "നീല" 
+ആകാശം = "നീല" 
+ഇപ്പൊ ആകാശം=="നീല" ആണെങ്കിൽ 
+പറയുക("ആകാശം നീലയാണ്")
+അല്ലെങ്കിൽ 
+പറയുക("ആകാശം വെള്ളയാണ്")
+
+കുട്ടികൾ = ['അപ്പു','അമ്മു','കുട്ടു','വിനു','അനു'];
+കുട്ടി_നാമം="";
+ഒരു കുട്ടി യെ കുട്ടികൾ നിന്നും എടുക്കുക {
+കുട്ടി = കുട്ടികൾ[കുട്ടി];
+കുട്ടി_നാമം +=  " ഉം " + കുട്ടി;
+}
+പറയുക(കുട്ടി_നാമം );
+</textarea>
+
+<!--
+<p>	
+<input type="checkbox" id="checkboxId" onclick="javascript:checkboxClickHandler()">
+<label for='checkboxId'>Malayalam</label>
+</p> -->
+
+
+
+
+
+
+ 
+
+<button type='button' class='waves-effect waves-light btn' id='execute' onclick='return execut(this);'>ഈ പ്രോഗ്രാം പ്രവർത്തിപ്പിക്കുക</button>
+
+
+                </div>
+                <div class="input-field col s4">
+					<p>Javascript</p>
+                    <textarea name='result' id='result' onkeypress='result.value = Mallu.compile(str.value);' class="materialize-textarea"></textarea>
+                </div>
+
+            </div>
+
+			
+			 <div class="row">
+				<div class="input-field col s12" style="
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-size: 13px;
+    color: #4CAF50;
+    font-style: italic;
+">
+				നമ്മൾ ടെക്കികൾക്ക് നേരിടുന്ന വലിയ പ്രശ്നങ്ങളിൽ ഒന്നാണ് മാത്യഭാഷയോടുള്ള ബന്ധം നഷ്ടപ്പെടുക എന്നത്. പ്രോഗ്രാമിങ് ൽ ഒരിക്കലും നമ്മുടെ മാത്യഭാഷ ഉപയോഗിക്കാനുള്ള സാഹചര്യം നമുക്ക് ലഭിക്കാറില്ല. അതിനുള്ള ഒരു ചെറിയ അവസരം ഒരുക്കുകയാണ് മല്ലുസ്ക്രിപ്ട്. ഇത് ജാവാസ്ക്രിപ്ട് നു പകരക്കാരനാവുകയല്ല , ഇതൊരു പുതിയ ഭാഷയും അല്ല. മറിച്ച് ജാവാസ്ക്രിപ്റ്റ് നെ ആകുന്ന കഴിയാവുന്ന രീതിയിൽ മലയാളീകരിക്കാനുള്ള ഒരു ശ്രമം മാത്രമാണ്.    
+				</div>
+			</div>
+			
+			
+			 <!-- <button type='button' id='execute' onclick='return execut(this);'>Execute Script</button> -->
+			
+			
+        </form>
+    </div>
+
+
+
+    <style>
+	* {
+    margin: 0;
+    padding: 0px;
+}
+        textarea{
+            height: 38vh !important;
+        	overflow-y:scroll !important;
+          }
+    </style>
+
+    <script>
+        function execut(e){
+        	result.value = Mallu.compile(str.value);
+        	Mallu.exec(str.value);
+        	return false;
+        }
+        
+        function scrolled(){
+          result.scrollTop = str.scrollTop;
+        }
+        
+          var __text = "";
+          var __temp_text = "";
+          
+          function __load(){
+        	if(__text!=__temp_text){
+        		__text = __temp_text;
+        		__result = Mallu.compile(__text);
+        		result.value = __result;
+        	}
+        	else {
+        	   // no change
+        	   __temp_text = str.value;
+        	}
+        	setTimeout(__load,100);
+          }
+          
+          __load();
+		  
+		  
+		 var _examples = [
+		 
+			{title:"സാധാരണ ഉപയോഗം ",code:`/*
+				  രണ്ട് സംഖ്യകൾ കൂട്ടാൻ ഉള്ള ലളിതമായ പ്രോഗ്രാം 
+				*/
+
+				സംഖ്യ1 = 100
+				സംഖ്യ2 = 70 
+				തുക = സംഖ്യ1 +സംഖ്യ2  
+				പറയുക(തുക)` },
+
+
+			{title:"നിബന്ധനകൾക്ക് അനുസരിച്ച്‌ കാര്യങ്ങൾ നിർവഹിക്കുക (IF,IF ELSE)",code:`മുതലാളി_വീട്ടിലുണ്ട് = ശരി;
+				തൊഴിലാളി ="രമണൻ"
+				ഇപ്പൊ മുതലാളി_വീട്ടിലുണ്ട് ശരിയാണ്  എങ്കിൽ 
+				   പറയുക(തൊഴിലാളി+ "വന്നിട്ടുണ്ട്")
+				അല്ലെങ്കിൽ 
+				   പറയുക(തൊഴിലാളി+ "വന്നിരുന്നു")
+				`},
+
+				{
+				 title:`ഒറ്റവരി നിബന്ധന (condtional operator ?: )`,
+				 code:`ഉത്തരം = !ശരി
+				എനിക്ക്_പോകാമോ = ഉത്തരം ശരിയാണ് ? "പോകാം":"പോകാൻ പറ്റില്ല" 
+				 പറയുക('നിനക്ക് ' + എനിക്ക്_പോകാമോ)`
+				},
+
+				{title:`പ്രവർത്തികൾ (functions) ഉപയോഗം`,
+				code:`പ്രവർത്തി കൂട്ടുക(സംഖ്യ1,സംഖ്യ2) തുടങ്ങുക:
+				 തിരികെ സംഖ്യ1+സംഖ്യ2
+				തീരുക:
+
+
+				സംഖ്യ1 = 50;
+				സംഖ്യ2 = 30;
+				// വിളിക്കുന്നു 
+				ഉത്തരം  = കൂട്ടുക(സംഖ്യ1,സംഖ്യ2);
+				പറയുക(സംഖ്യ1 + ' ഉം ' + സംഖ്യ2 + ' ഉം ' + 'കൂട്ടിയാൽ കിട്ടുന്നത്' + ' ' + ഉത്തരം)
+				`
+				},			
+
+
+				{title:`സ്വയം ആവർത്തിക്കുന്ന പ്രവർത്തികൾ  (recursion)`,
+				code:`പ്രവർത്തി ഫാ(സംഖ്യ=1) തുടങ്ങുക:
+				 ഇപ്പൊ സംഖ്യ==1 ആണെങ്കിൽ 
+					 തിരികെ സംഖ്യ 
+				അല്ലെങ്കിൽ 
+				   തിരികെ സംഖ്യ*ഫാ(സംഖ്യ - 1)
+				തീരുക: 
+
+				// വിളിക്കുക 
+				പറയുക(ഫാ( മൂന്ന് ));
+				പറയുക(ഫാ( അഞ്ച് ));`
+				},	
+ 
+
+				{title:`കൂട്ടം (array) ലളിത ഉദാഹരണം`,
+				code:`തുക = 0;
+				തുടർച്ച ഐ=ഒന്ന് മുതൽ ഐ<=പത്ത് വരെ ഐ മുന്നോട്ട്  തുടങ്ങുക:
+					തുക = തുക + ഐ ;
+				തീരുക:
+				പറയുക(തുക) `
+				},	
+
+
+				{title:`കൂട്ടം (array) സങ്കീർണ  ഉദാഹരണം`,
+				code:`കുട്ടികൾ = ["അപ്പു","അമ്മു","കുട്ടു","വിനു"];
+				സന്ദേശം = "";
+				ഒരു കുട്ടി യെ കുട്ടികൾ നിന്നും എടുക്കുക {
+					കുട്ടി = കുട്ടികൾ[കുട്ടി]
+					സന്ദേശം+= "ഹായ് " + കുട്ടി+ "   ";
+				}
+				പറയുക(സന്ദേശം);`
+				},
+
+				{title:`ഗണം  , ഗണത്തിൻ്റെ ഉപയോഗങ്ങളും  ( objects )
+				`,
+				code:`മനുഷ്യൻ = പ്രവർത്തി() തുടങ്ങുക:
+
+				  ഇത്.പേര് = "";
+				  ഇത്.ജോലി = "";
+				  ഇത്.വിശദവിവരങ്ങൾ = പ്രവർത്തി() തുടങ്ങുക:
+						  തിരികെ  ഇത്.പേര് + " - " + ഇത്.ജോലി
+					 തീരുക:  
+
+
+				   തീരുക:    
+
+
+				അപ്പു = പുതിയ മനുഷ്യൻ()   
+				അപ്പു.പേര് = "അപ്പുക്കുട്ടൻ";
+				അപ്പു.ജോലി = "പഠനം";
+				പറയുക(അപ്പു.വിശദവിവരങ്ങൾ() ) `
+				}]
+		 
+				 for(__i in _examples){
+					let _example = _examples[__i];
+					let _title = _example.title;
+					let _code = _example.code;
+					$("#examples").append("<li class='codeBlock' data-code-id='"+__i+"'><a href='#!'>"+_title+"</a></li>");
+				 }		 
+
+				 $(document).on("click",".codeBlock",function(){
+						_code_id = $(this).data("code-id");
+						_code = _examples[_code_id].code;
+						$("#str").val(_code);
+				});
+		 
+    </script>
+
+
+
+
+</body>
+
+</html>
